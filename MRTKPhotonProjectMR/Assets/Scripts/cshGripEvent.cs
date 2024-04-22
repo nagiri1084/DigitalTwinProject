@@ -6,47 +6,57 @@ using Photon.Pun;
 public class cshGripEvent : MonoBehaviourPun
 {
     public GameObject fixingHand;
-    private Collider col;
+    //private Collider col;
+    //private string colName;
     private bool enterState = false;
-    
+
     private void Start()
     {
         fixingHand.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "hands")
+        if (other.gameObject.tag == "hands")
         {
-            col = other;
+            string otherName = other.gameObject.name;
             enterState = true;
             PhotonView pv = PhotonView.Get(this);
-            pv.RPC("ManageHand", RpcTarget.All);
+            pv.RPC("TrueFixingHand", RpcTarget.All, otherName);
             Debug.Log("ManageHand");
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "hands")
+        if (other.gameObject.tag == "hands")
         {
-            col = other;
+            string otherName = other.gameObject.name;
             enterState = false;
             PhotonView pv = PhotonView.Get(this);
-            pv.RPC("ManageHand", RpcTarget.All);
+            pv.RPC("FalseFixingHand", RpcTarget.All, otherName);
             Debug.Log("OnTriggerExit");
         }
     }
 
     [PunRPC]
-    private void ManageHand()
+    private void TrueFixingHand(string colliderName)
     {
-        if(enterState == true && col != null)
+        GameObject colliderObject = GameObject.Find(colliderName);
+        if (enterState == true && colliderObject != null)
         {
-            col.transform.GetChild(0).gameObject.SetActive(false);
+            colliderObject.transform.GetChild(0).gameObject.SetActive(false);
+            Debug.Log(colliderObject.transform.GetChild(0));
             fixingHand.gameObject.SetActive(true);
         }
-        else if(enterState == false && col != null)
+    }
+
+    [PunRPC]
+    private void FalseFixingHand(string colliderName)
+    {
+        GameObject colliderObject = GameObject.Find(colliderName);
+        if (enterState == false && colliderObject != null)
         {
-            col.transform.GetChild(0).gameObject.SetActive(true);
+            colliderObject.transform.GetChild(0).gameObject.SetActive(true);
+            Debug.Log(colliderObject.transform.GetChild(0));
             fixingHand.gameObject.SetActive(false);
         }
     }

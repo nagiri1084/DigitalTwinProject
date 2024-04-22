@@ -34,48 +34,21 @@ public class cshMRuser : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        FindLeftHand();
-        FindRightHand();
+        CreateRightHand();
+        CreateLeftHand();
     }
 
-    void FindLeftHand()
-    {
-        L_Hand = GameObject.Find("Left_PokePointer(Clone)");
-
-        if (L_Hand)
-        {
-            if (LeftCreateState == false)
-            {
-                L_Model = PhotonNetwork.Instantiate("L_Model", L_Hand.transform.position, Quaternion.identity, 0);
-                Debug.Log("create l_model");
-                LeftCreateState = true;
-            }
-            else
-            {
-                L_Model.transform.position = new Vector3(L_Hand.transform.position.x, L_Hand.transform.position.y - 0.1f, L_Hand.transform.position.z) ;
-                L_Model.transform.rotation = L_Hand.transform.rotation;
-            }
-        }
-        else
-        {
-            if (LeftCreateState == true)
-            {
-                PhotonNetwork.Destroy(L_Model);
-                LeftCreateState = false;
-            }
-        }
-    }
-    void FindRightHand()
+    void CreateRightHand()
     {
 
         R_Hand = GameObject.Find("Right_PokePointer(Clone)");
 
         if (R_Hand)
         {
-            if (RightCreateState == false)
+            if (!RightCreateState)
             {
                 //R_Hand.AddComponent<BoxCollider>();
-                R_Model = PhotonNetwork.Instantiate("R_Model", R_Hand.transform.position, Quaternion.identity, 0);
+                R_Model = PhotonNetwork.Instantiate("R_Model", R_Hand.transform.position, Quaternion.identity);
                 Debug.Log("create r_model");
                 RightCreateState = true;
             }
@@ -83,14 +56,46 @@ public class cshMRuser : MonoBehaviourPun
             {
                 R_Model.transform.position = new Vector3(R_Hand.transform.position.x, R_Hand.transform.position.y - 0.1f, R_Hand.transform.position.z);
                 R_Model.transform.rotation = R_Hand.transform.rotation;
+                Debug.Log("transform r_model");
             }
         }
         else
         {
-            if (RightCreateState == true)
+            if (RightCreateState)
             {
                 PhotonNetwork.Destroy(R_Model);
+                Debug.Log("Destroy r_model");
                 RightCreateState = false;
+            }
+        }
+    }
+
+    void CreateLeftHand()
+    {
+        L_Hand = GameObject.Find("Left_PokePointer(Clone)");
+
+        if (L_Hand)
+        {
+            if (!LeftCreateState)
+            {
+                L_Model = PhotonNetwork.Instantiate("L_Model", L_Hand.transform.position, Quaternion.identity);
+                Debug.Log("create l_model");
+                LeftCreateState = true;
+            }
+            else
+            {
+                L_Model.transform.position = new Vector3(L_Hand.transform.position.x, L_Hand.transform.position.y - 0.1f, L_Hand.transform.position.z);
+                L_Model.transform.rotation = L_Hand.transform.rotation;
+                Debug.Log("transform l_model");
+            }
+        }
+        else
+        {
+            if (LeftCreateState)
+            {
+                PhotonNetwork.Destroy(L_Model);
+                Debug.Log("Destroy l_model");
+                LeftCreateState = false;
             }
         }
     }

@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class cshPhone : MonoBehaviourPun
+public class cshPaint : MonoBehaviourPun
 {
-    private GameObject Phone;
+    //private GameObject Phone;
     //private string col;
     //private Material Color;
     private bool state = false;
 
     private void Start()
     {
-        Phone = this.gameObject;
-        Debug.Log(Phone.GetComponent<MeshRenderer>().material);
+        //Phone = this.gameObject;
+        //Debug.Log(Phone.GetComponent<MeshRenderer>().material);
     }
+
     private void OnTriggerStay(Collider other)
     {
         //Color = other.GetComponent<Material>();
-        if(other.gameObject.tag == "paint")
+        if(other.gameObject.tag == "phone")
         {
             string otherName = other.gameObject.name;
             PhotonView pv = PhotonView.Get(this);
@@ -33,11 +34,11 @@ public class cshPhone : MonoBehaviourPun
         GameObject colliderObject = GameObject.Find(colliderName);
         if(colliderObject != null)
         {
-            Material color = colliderObject.GetComponent<MeshRenderer>().material;
+            Material color = this.GetComponent<MeshRenderer>().material;
             StartCoroutine(Waiting());
             if (state == true)
             {
-                Phone.GetComponent<MeshRenderer>().material = color;
+                colliderObject.GetComponent<MeshRenderer>().material = color;
                 Debug.Log("Changed Material");
             }
         }
