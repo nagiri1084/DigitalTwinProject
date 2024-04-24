@@ -30,8 +30,8 @@ public class cshSelectUser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(time <= 11 && userId != 1)
-            TimeCheck();
+        //if(time <= 11 && userId != 1)
+        //    TimeCheck();
     }
 
     private void TimeCheck()

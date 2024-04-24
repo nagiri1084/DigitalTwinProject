@@ -11,6 +11,7 @@ public class cshLobbyManager : MonoBehaviourPunCallbacks // PUN 구현할때 overrid
 
     public Text connectionInfoText;
     public Button joinButton;
+    public string enterScene;
 
     string scenename = "Lab";
     private void Start()
@@ -80,7 +81,7 @@ public class cshLobbyManager : MonoBehaviourPunCallbacks // PUN 구현할때 overrid
     {
         //connectionInfoText.text = "방 참가 성공";
         connectionInfoText.text = "Successfully joined the room";
-        PhotonNetwork.LoadLevel("PhotonPlay");
+        PhotonNetwork.LoadLevel(enterScene);
 
         //base.OnJoinedRoom();
     }
