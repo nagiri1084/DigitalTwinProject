@@ -47,7 +47,6 @@ public class cshMRuser : MonoBehaviourPun
         {
             if (!RightCreateState)
             {
-                //R_Hand.AddComponent<BoxCollider>();
                 R_Model = PhotonNetwork.Instantiate("R_Model", R_Hand.transform.position, Quaternion.identity);
                 Debug.Log("create r_model");
                 RightCreateState = true;
@@ -73,7 +72,7 @@ public class cshMRuser : MonoBehaviourPun
     void CreateLeftHand()
     {
         L_Hand = GameObject.Find("Left_PokePointer(Clone)");
-
+        
         if (L_Hand)
         {
             if (!LeftCreateState)
