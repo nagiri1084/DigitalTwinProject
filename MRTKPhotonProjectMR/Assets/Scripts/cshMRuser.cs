@@ -50,6 +50,10 @@ public class cshMRuser : MonoBehaviourPun
                 R_Model = PhotonNetwork.Instantiate("R_Model", R_Hand.transform.position, Quaternion.identity);
                 Debug.Log("create r_model");
                 RightCreateState = true;
+                if (photonView.IsMine) //게임 사용자가 나라면
+                {
+                    R_Model.transform.GetChild(0).gameObject.SetActive(false);
+                }
             }
             else
             {
@@ -80,6 +84,10 @@ public class cshMRuser : MonoBehaviourPun
                 L_Model = PhotonNetwork.Instantiate("L_Model", L_Hand.transform.position, Quaternion.identity);
                 Debug.Log("create l_model");
                 LeftCreateState = true;
+                if (photonView.IsMine) //게임 사용자가 나라면
+                {
+                    L_Model.transform.GetChild(0).gameObject.SetActive(false);
+                }
             }
             else
             {
