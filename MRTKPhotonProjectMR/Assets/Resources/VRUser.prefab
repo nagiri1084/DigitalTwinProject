@@ -194,7 +194,6 @@ GameObject:
   - component: {fileID: -143345423030928387}
   - component: {fileID: 5062242270675411059}
   - component: {fileID: 8932115955442266445}
-  - component: {fileID: 1748535323335635215}
   m_Layer: 0
   m_Name: VRUser
   m_TagString: Untagged
@@ -268,20 +267,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &1748535323335635215
+--- !u!114 &4301727450215727233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572691856866650061}
+  m_GameObject: {fileID: 7572691857221509826}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88e5a3b5677eea348840388bfbd94b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedForward: 12
-  speedSide: 6
+  speedForward: 1
+  speedSide: 1
 --- !u!1001 &237183104730253295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -510,6 +509,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b650a383c3760f449b65ff48bccdd5f, type: 3}
+--- !u!1 &7572691857221509826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 4b650a383c3760f449b65ff48bccdd5f, type: 3}
+  m_PrefabInstance: {fileID: 7572691857221608550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7572691857221222114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 4b650a383c3760f449b65ff48bccdd5f, type: 3}
