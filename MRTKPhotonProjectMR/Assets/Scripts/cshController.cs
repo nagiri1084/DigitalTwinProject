@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using UnityEngine.SocialPlatforms;
+using UnityEngineInternal;
 
 public class cshController : MonoBehaviour
 {
     public int speedForward = 4; //전진 속도
     public int speedSide = 2; //옆걸음 속도
 
+    public GameObject RightController; //오른쪽 컨트롤러
+    public Transform posPrinter; //프린터 위치
+    public Transform posRock; //광석캐기 위치
     private Transform tr; //플레이어 트랜스폼
     private float dirX = 0;
     private float dirZ = 0;
@@ -20,6 +26,27 @@ public class cshController : MonoBehaviour
     {
         //MovePlayer();
         MovePlayer2();
+        if(OVRInput.Get(OVRInput.Button.One)) Teleport();
+    }
+    void Teleport()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(RightController.transform.position, RightController.transform.forward, out hit))
+        {
+            Debug.DrawRay(RightController.transform.position, RightController.transform.forward, Color.blue);
+            Target target = hit.transform.GetComponent<Target>();
+            if (hit.transform.name == "MovePrinter")
+            {
+                tr.position = hit.transform.position;
+            }
+            if (hit.transform.name == "MoveRock")
+            {
+                tr.position = posRock.transform.position;
+            }
+
+            Debug.Log(hit.transform.name);
+        }
     }
 
     //플레이어 이동
