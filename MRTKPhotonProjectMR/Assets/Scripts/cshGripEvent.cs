@@ -41,7 +41,7 @@ public class cshGripEvent : MonoBehaviourPun
     private void TrueFixingHand(string colliderName)
     {
         GameObject colliderObject = GameObject.Find(colliderName);
-        if (enterState == true && colliderObject != null)
+        if (enterState == true && colliderObject != null && photonView.IsMine == false)
         {
             colliderObject.transform.GetChild(0).gameObject.SetActive(false);
             Debug.Log(colliderObject.transform.GetChild(0));
@@ -53,7 +53,7 @@ public class cshGripEvent : MonoBehaviourPun
     private void FalseFixingHand(string colliderName)
     {
         GameObject colliderObject = GameObject.Find(colliderName);
-        if (enterState == false && colliderObject != null)
+        if (enterState == false && colliderObject != null && photonView.IsMine == false)
         {
             colliderObject.transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log(colliderObject.transform.GetChild(0));

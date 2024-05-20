@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a455c8bac3429a1419894e81a85f4d3d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - vrUser: {fileID: 7572691856866650061, guid: c2141f55e218231449ac273ba70d2324, type: 3}
+  - posPrinter: {instanceID: 0}
+  - posRock: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

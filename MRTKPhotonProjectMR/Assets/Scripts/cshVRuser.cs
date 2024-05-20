@@ -12,7 +12,7 @@ public class cshVRuser : MonoBehaviourPun
         if (!photonView.IsMine)
         {
             // VR Ä«¸Þ¶ó FALSE
-            GetComponentInChildren<OVRCameraRig>().disableEyeAnchorCameras = true;
+            GetComponentInChildren<OVRCameraRig>().disableEyeAnchorCameras = false;
 
             Camera[] cameras;
             cameras = transform.gameObject.GetComponentsInChildren<Camera>();

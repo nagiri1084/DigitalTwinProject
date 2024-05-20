@@ -24,7 +24,7 @@ public class cshGameManager : MonoBehaviourPun // 점수와 게임 오버 여부 및 게임 
 
     private static cshGameManager m_instance; // 싱글톤이 할당될 static 변수
 
-    public GameObject[] Players;
+    //public GameObject[] Players;
     public GameObject[] PlayersPos;
 
 
@@ -32,7 +32,7 @@ public class cshGameManager : MonoBehaviourPun // 점수와 게임 오버 여부 및 게임 
     //public GameObject MixedRealityPlayspace; // 생성할 MR 플레이어 캐릭터
     //public GameObject MixedRealityToolkit;
     //public GameObject MRPlayerPrefab; // 생성할 VR 플레이어 캐릭터
-    public GameObject VRPlayerPrefab; // 생성할 VR 플레이어 캐릭터
+    public GameObject[] VRPlayerPrefab; // 생성할 VR 플레이어 캐릭터
 
     //public GameObject MRSpawnPosPrefab; // 생성할 VR 플레이어 캐릭터의 위치
     //public GameObject VRSpawnPosPrefab; // 생성할 AR 플레이어 캐릭터의 위치
@@ -74,11 +74,12 @@ public class cshGameManager : MonoBehaviourPun // 점수와 게임 오버 여부 및 게임 
         {
             // 생성할 랜덤 위치 지정
             //Vector3 randomSpawnPos = VRSpawnPosPrefab.transform.position;//Random.insideUnitSphere * 5f;
-            Vector3 randomSpawnPos = new Vector3(0.0f, 0.0f, 0.0f);//Random.insideUnitSphere * 5f;
+            //Vector3 randomSpawnPos = new Vector3(0.0f, 0.0f, 0.0f);//Random.insideUnitSphere * 5f;
 
             // 네트워크상의 모든 클라이언트에서 생성 실행  
             // 해당 게임 오브젝트의 주도권은 생성 메서드를 직접 실행한 클라이언트에 있음
-            PhotonNetwork.Instantiate(VRPlayerPrefab.name, randomSpawnPos, Quaternion.identity);
+            PhotonNetwork.Instantiate(VRPlayerPrefab[playerCnt++].name, PlayersPos[playerCnt].transform.position, Quaternion.identity);
+
             //playerCnt++;
         }
         else
